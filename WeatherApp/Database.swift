@@ -9,10 +9,6 @@
 import UIKit
 import RealmSwift
 
-class Database: NSObject {
-
-}
-
 class Condition: Object {
     
     @objc dynamic var date = ""

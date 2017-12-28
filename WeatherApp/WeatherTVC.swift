@@ -82,10 +82,6 @@ class WeatherTVC: UITableViewController {
         
     }
     
-    func insertIntoDB() {
-        
-    }
-    
     func getData() {
         
         let urlString: String = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22singapore%2C%20sg%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
@@ -99,13 +95,6 @@ class WeatherTVC: UITableViewController {
             let response = try result.value()
             
             self.dataAcquired = ["CITY":response.query.results.channel.location.city, "COUNTRY":response.query.results.channel.location.country, "COND_DICT":response.query.results.channel.item.condition, "FORE_ARRAY":response.query.results.channel.item.forecast]
-            
-            /*
-            print("dataacq \(self.dataAcquired)")
-            print("fore count: \((self.dataAcquired.value(forKey: "FORE_ARRAY") as! [Forecast]).count)")
-            print("fore 1: \((self.dataAcquired.value(forKey: "FORE_ARRAY") as! [Forecast])[0])")
-            print("fore 2: \((self.dataAcquired.value(forKey: "FORE_ARRAY") as! [Forecast])[1])")
-            */
             
             self.dataRefreshed = true
             
